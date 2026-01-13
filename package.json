@@ -11,6 +11,8 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
+    "db:reset": "npx tsx src/database/reset-database.ts",
+    "db:fresh": "npm run db:reset && npm run migrate:latest",
     "migrate:latest": "knex migrate:latest",
     "migrate:rollback": "knex migrate:rollback",
     "migrate:make": "knex migrate:make",
