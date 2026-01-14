@@ -8,7 +8,7 @@ import db from '../../database/connection.js';
 import { User, Wallet } from '../../types/index.js';
 import BlacklistService from '../../services/BlacklistService.js';
 import UserService from '../../services/UserService.js';
-import AuthService from '../../services/AuthService.js';
+import AuthService from '../../services/AuthService.js'
 
 /**
  * Create a mock blacklist service that always passes

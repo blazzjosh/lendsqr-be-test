@@ -1,13 +1,9 @@
 import knex, { Knex } from 'knex';
 import dotenv from 'dotenv';
-import { createRequire } from 'module';
 import path from 'path';
 
 // Load environment variables
 dotenv.config();
-
-// Create require function for ES modules
-const require = createRequire(import.meta.url);
 
 // Determine environment
 const environment = process.env.NODE_ENV || 'development';
@@ -16,7 +12,11 @@ const environment = process.env.NODE_ENV || 'development';
 let knexConfig: any;
 try {
   const knexfilePath = path.resolve(process.cwd(), 'knexfile.cjs');
-  knexConfig = require(knexfilePath);
+  
+  // Use Node's require directly with absolute path
+  const Module = require('module');
+  const req = Module.createRequire(knexfilePath);
+  knexConfig = req(knexfilePath);
 } catch (error) {
   console.error('Failed to load knexfile:', error);
   throw error;

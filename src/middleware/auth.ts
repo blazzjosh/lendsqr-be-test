@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import AuthService from '../services/AuthService.js';
+import AuthService from '../services/AuthService';
 
 /**
  * Extended Request interface with user information
