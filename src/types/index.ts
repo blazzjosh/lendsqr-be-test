@@ -209,3 +209,16 @@ export interface GetTransactionsParams {
   limit?: number;
   offset?: number;
 }
+
+// ============================================
+// MIDDLEWARE TYPES (Extended Request)
+// ============================================
+
+import { Request } from 'express';
+
+export interface AuthenticatedRequest extends Request {
+  user?: {
+    id: number;
+    email: string;
+  };
+}
