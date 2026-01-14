@@ -123,22 +123,22 @@ export const validateUserRegistration = [
     .isEmail()
     .normalizeEmail()
     .withMessage('Valid email is required'),
-  
+
   body('phone_number')
     .matches(/^\+?[1-9]\d{1,14}$/)
     .withMessage('Valid phone number is required (E.164 format)'),
-  
+
   body('password')
     .isLength({ min: 8 })
     .withMessage('Password must be at least 8 characters')
     .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/)
     .withMessage('Password must contain at least one uppercase letter, one lowercase letter, and one number'),
-  
+
   body('first_name')
     .trim()
     .isLength({ min: 1, max: 100 })
     .withMessage('First name is required (max 100 characters)'),
-  
+
   body('last_name')
     .trim()
     .isLength({ min: 1, max: 100 })
@@ -154,13 +154,13 @@ export const validateProfileUpdate = [
     .trim()
     .isLength({ min: 1, max: 100 })
     .withMessage('First name must be 1-100 characters'),
-  
+
   body('last_name')
     .optional()
     .trim()
     .isLength({ min: 1, max: 100 })
     .withMessage('Last name must be 1-100 characters'),
-  
+
   body('phone_number')
     .optional()
     .matches(/^\+?[1-9]\d{1,14}$/)

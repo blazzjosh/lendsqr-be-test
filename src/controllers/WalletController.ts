@@ -202,7 +202,7 @@ export const validateFundWallet = [
       }
       return true;
     }),
-  
+
   body('description')
     .optional()
     .isString()
@@ -219,7 +219,7 @@ export const validateTransferFunds = [
     .isEmail()
     .normalizeEmail()
     .withMessage('Valid recipient email is required'),
-  
+
   body('amount')
     .isFloat({ min: 0.01 })
     .withMessage('Amount must be greater than 0')
@@ -230,7 +230,7 @@ export const validateTransferFunds = [
       }
       return true;
     }),
-  
+
   body('description')
     .optional()
     .isString()
@@ -253,7 +253,7 @@ export const validateWithdrawFunds = [
       }
       return true;
     }),
-  
+
   body('description')
     .optional()
     .isString()
@@ -270,7 +270,7 @@ export const validateGetTransactions = [
     .optional()
     .isInt({ min: 1, max: 100 })
     .withMessage('Limit must be between 1 and 100'),
-  
+
   query('offset')
     .optional()
     .isInt({ min: 0 })

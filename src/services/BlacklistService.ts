@@ -20,24 +20,16 @@ export class BlacklistService {
   private timeout: number;
 
   constructor(apiUrl?: string, timeout: number = 5000) {
-    this.apiUrl = process.env.BLACKLIST_API_URL || 'https://adjutor.lendsqr.com/v2/verification/karma';
+    // Use passed URL first, then env var, then default
+    this.apiUrl = apiUrl || process.env.BLACKLIST_API_URL || 'https://adjutor.lendsqr.com/v2/verification/karma';
     this.timeout = timeout;
   }
 
-  /**
-   * Check if a user is blacklisted by email or phone number
-   * 
-   * @param email - User's email address
-   * @param phoneNumber - User's phone number
-   * @returns BlacklistCheckResult indicating if user is blacklisted
-   */
   async checkBlacklist(email: string, phoneNumber: string): Promise<BlacklistCheckResult> {
     try {
-      // Create abort controller for timeout
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), this.timeout);
 
-      // Make API request
       const response = await fetch(this.apiUrl, {
         method: 'POST',
         headers: {
@@ -52,21 +44,15 @@ export class BlacklistService {
 
       clearTimeout(timeoutId);
 
-      // Check if response is OK
       if (!response.ok) {
-        console.error(`Blacklist API returned status ${response.status}`);
-        // Fail-safe: treat as blacklisted if API returns error
         return {
           isBlacklisted: true,
           reason: 'Blacklist verification service unavailable',
         };
       }
 
-      // Parse response
       const data = (await response.json()) as BlacklistApiResponse;
 
-      // Check if user is blacklisted based on API response
-      // Adjust this logic based on actual API response format
       if (data.status === 'blacklisted' || data.karma?.blacklist === true) {
         return {
           isBlacklisted: true,
@@ -79,14 +65,6 @@ export class BlacklistService {
       };
 
     } catch (error: any) {
-      // Log error for debugging
-      console.error('Blacklist check failed:', error.message);
-
-      // Fail-safe: if API is unreachable or times out, treat as blacklisted
-      if (error.name === 'AbortError') {
-        console.error('Blacklist API timeout');
-      }
-
       return {
         isBlacklisted: true,
         reason: 'Unable to verify blacklist status - treating as blacklisted for safety',
@@ -94,12 +72,6 @@ export class BlacklistService {
     }
   }
 
-  /**
-   * Check blacklist with identity number (optional)
-   * 
-   * @param identityNumber - User's identity number (e.g., BVN)
-   * @returns BlacklistCheckResult
-   */
   async checkBlacklistByIdentity(identityNumber: string): Promise<BlacklistCheckResult> {
     try {
       const controller = new AbortController();
@@ -139,8 +111,6 @@ export class BlacklistService {
       };
 
     } catch (error: any) {
-      console.error('Blacklist identity check failed:', error.message);
-
       return {
         isBlacklisted: true,
         reason: 'Unable to verify blacklist status',

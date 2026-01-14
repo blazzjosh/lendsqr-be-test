@@ -55,7 +55,7 @@ export async function createTestUser(
  */
 export async function cleanupTestUser(userId: number): Promise<void> {
   await db('auth_tokens').where({ user_id: userId }).delete();
-  await db('transactions').whereIn('wallet_id', 
+  await db('transactions').whereIn('wallet_id',
     db('wallets').select('id').where({ user_id: userId })
   ).delete();
   await db('wallets').where({ user_id: userId }).delete();
