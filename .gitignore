@@ -9,3 +9,11 @@ coverage/
 .cursor/
 .vscode/
 .idea/
+
+# Test coverage
+coverage/
+.nyc_output/
+*.lcov
+
+# Test artifacts
+test-results/

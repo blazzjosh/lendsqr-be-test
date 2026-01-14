@@ -1,7 +1,6 @@
-import dotenv from 'dotenv';
-dotenv.config();
+require('dotenv').config();
 
-const config = {
+module.exports = {
   development: {
     client: 'mysql2',
     connection: {
@@ -65,5 +64,3 @@ const config = {
     },
   },
 };
-
-export default config;
