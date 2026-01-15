@@ -557,7 +557,7 @@ Server will start at `http://localhost:3000`
 
 ```bash
 # Test health endpoint
-curl http://localhost:3000/api/v1/health
+curl http://localhost:3000/api/health
 
 # Expected response:
 # {"status":"ok","timestamp":"...","database":"connected"}
@@ -569,7 +569,7 @@ curl http://localhost:3000/api/v1/health
 
 ### Base URL
 ```
-http://localhost:3000/api/v1
+http://localhost:3000/api
 ```
 
 ### Authentication
