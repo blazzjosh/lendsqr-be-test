@@ -4,6 +4,7 @@
  * Helper functions for testing
  */
 
+import { jest } from '@jest/globals';
 import db from '../../database/connection.js';
 import { User, Wallet } from '../../types/index.js';
 import BlacklistService from '../../services/BlacklistService.js';

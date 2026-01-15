@@ -2,6 +2,7 @@
  * BlacklistService Unit Tests
  */
 
+import { jest } from '@jest/globals';
 import { BlacklistService } from '../BlacklistService.js';
 
 // Mock global fetch

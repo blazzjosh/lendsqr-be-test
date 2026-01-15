@@ -4,6 +4,7 @@
  * Tests wallet operations with transaction integrity
  */
 
+import { jest } from '@jest/globals';
 import WalletService from '../WalletService.js';
 import db from '../../database/connection.js';
 import { cleanupAllTestData, createTestUser } from '../../__tests__/helpers/testUtils.js';

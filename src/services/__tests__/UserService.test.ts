@@ -4,6 +4,7 @@
  * Tests user operations with blacklist integration
  */
 
+import { jest } from '@jest/globals';
 import UserService from '../UserService.js';
 import BlacklistService from '../BlacklistService.js';
 import db from '../../database/connection.js';
