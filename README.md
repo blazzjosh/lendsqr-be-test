@@ -1079,7 +1079,7 @@ npm run test:coverage    # Generate coverage report
 
 ## License
 
-MIT License - see [LICENSE](LICENSE) file for details.
+MIT License 
 
 ---
 
