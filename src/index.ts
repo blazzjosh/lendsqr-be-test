@@ -4,7 +4,7 @@
 
 import express, { Application } from 'express';
 import cors from 'cors';
-import helmet from 'helmet';
+import * as helmetModule from 'helmet';
 import dotenv from 'dotenv';
 import routes from './routes/index.js';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler.js';
@@ -12,6 +12,10 @@ import db from './database/connection.js';
 
 // Load environment variables
 dotenv.config();
+
+// Handle helmet import for different build environments (Heroku/Vercel compatibility)
+// @ts-ignore - helmet module resolution varies between environments
+const helmet: any = helmetModule.default || helmetModule;
 
 /**
  * Create and configure Express application
